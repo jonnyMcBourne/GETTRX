@@ -1,7 +1,26 @@
 .SearchList_Container{
     background-color: white;
     border-radius: 5px;
-    border: 1px solid gray;
-    height: 30%;
-
+    border: 1px solid #DDDDDD;
+    height: 65%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+@media (min-width: 320px) {}
+
+
+@media (min-width: 480px) {}
+
+@media (min-width: 768px) {
+    .SearchList_Container{
+        margin-bottom: 1.4em;
+    }
+}
+
+
+@media (min-width: 992px) {}
+
+
+@media (min-width: 1200px) {}

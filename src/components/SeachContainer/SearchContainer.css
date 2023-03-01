@@ -3,6 +3,10 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: red;
     flex: 1;
+    height: 100%;
+    width: 100%;
+    margin-left: 4em;
+    margin-right: 4em;
 }
+
