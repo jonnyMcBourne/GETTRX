@@ -1,15 +1,49 @@
-.App_container{
+.App_container {
   background-color: #F5F5F5;
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
+
+
+
+
+@media (min-width: 320px) {
+
+}
+
+
+@media (min-width: 480px) {
+
+}
+
+@media (min-width: 768px) {
+  .App_container {
+    flex-direction: row;
+  }
+}
+
+
+@media (min-width: 992px) {
+
+}
+
+
+@media (min-width: 1200px) {
+
+
+}
+
+
