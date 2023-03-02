@@ -18,14 +18,13 @@ export const usePeopleReq = (url:{text:string}) =>
         newUrl=`?search=${url.text}`
     }
     const isFirstRender = useRef(true);
-    //console.log({ url });
+    
     useEffect(() =>
     {
         if (!isFirstRender.current)
         {
             peopleApi.get<Data>(`${ newUrl }`).then(({ data }) =>
             {
-                
                 if (data.results)
                 {
                     setResult({ data: data.results, isLoading: false, error: null })
