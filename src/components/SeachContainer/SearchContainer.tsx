@@ -5,8 +5,7 @@ import  './SearchContainer.css'
 
 export const SearchContainer = () =>
 {
-  const [ textInput, setTextInput ] = useState(''); 
-  console.log({ textInput })
+  const [ textInput, setTextInput ] = useState({ text: '' }); 
   
   return (
     <div className='searchContainer_container'>
