@@ -1,8 +1,15 @@
 import { createContext } from "react";
-import { UrlType } from "../interfaces";
+import { People,} from "../interfaces";
 
-export interface ContextProps {
-    url: UrlType
+export interface ContextProps
+{
+    singleUrl: string;
+    people: People[];
+    singlePeople: People;
+    getPeopleByPage: (url: string) => Promise<void>
+    getPeopleBySearch: (url: string) => Promise<void>
+    getPeopleById: (url: string) => Promise<void>
+    setSingleUrl:(url:string)=>void
 }
 
 export const ApiContext = createContext({} as ContextProps);

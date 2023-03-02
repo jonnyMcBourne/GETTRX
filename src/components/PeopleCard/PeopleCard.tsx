@@ -1,15 +1,17 @@
-import { Dispatch, FC, SetStateAction } from "react"
+import { Dispatch, FC, SetStateAction, useContext } from "react"
+import { peopleApi } from "../../api"
+import { ApiContext } from "../../context"
 import { People } from "../../interfaces"
 import './PeopleCard.css'
 
 interface PersonProps
 {
     person: People
-      setUrlDetails: Dispatch<SetStateAction<string>>;
 }
 
-export const PeopleCard: FC<PersonProps> = ({ person,setUrlDetails }) =>
+export const PeopleCard: FC<PersonProps> = ({ person }) =>
 {
+    const { setSingleUrl }=useContext(ApiContext)
     const { name, height, birth_year, gender, url } = person;
     const handleClick = () =>
     {
@@ -17,8 +19,8 @@ export const PeopleCard: FC<PersonProps> = ({ person,setUrlDetails }) =>
         if (startIndex !== -1)
         {
             let lastIndex = url.indexOf("/",startIndex)
-            const newurl= url.slice(lastIndex)
-            setUrlDetails(newurl);
+            const newurl = url.slice(lastIndex)
+            setSingleUrl(newurl);
         } else
         {
             

@@ -27,6 +27,32 @@
     border: 1px solid #DDDDDD;
 }
 
+.DetailsContainer_info  p{
+    font-size: 18px;
+        margin-block-start: 0px;
+            margin-block-end: 0px;
+            margin-inline-start: 0px;
+            margin-inline-end: 0px;
+}
+.DetailsContainer_info_container{
+    display: flex;
+}
+.keys{
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    font-weight: 600;
+}
+.keys p{
+margin-bottom: .3em;
+}
+.values {
+    margin-left: 1em;
+}
+.values p{
+    margin-bottom: .3em;
+}
+
 @media (min-width: 768px) {
     .DetailsContainer_container {
         margin-right: 4em;

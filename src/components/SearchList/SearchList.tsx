@@ -1,24 +1,17 @@
-import { Dispatch, FC, SetStateAction, useRef } from 'react'
+import { FC, useContext, useEffect, useRef, useState } from 'react'
 import './SearchList.css'
-import { usePeopleReq } from '../../hooks'
 import { PeopleCard } from '../PeopleCard/PeopleCard';
-import { UrlType } from '../../interfaces';
-interface Props
+import { ApiContext } from '../../context';
+interface Props { };
+export const SearchList: FC<Props> = ( ) =>
 {
-  textInput: UrlType;
-  setInput: Dispatch<SetStateAction<UrlType>>
-  setUrlDetails: Dispatch<SetStateAction<string>>;
-}
-export const SearchList: FC<Props> = ({ textInput,setInput, setUrlDetails }) =>
-{
-  const { data, error } = usePeopleReq(textInput);
-  const ref = useRef<HTMLUListElement>(null);
-  if (error)
-  {
-    console.log(error);
-    return <></>
-  }
 
+  const { getPeopleByPage, people } = useContext(ApiContext);
+  const [ page, setPage ] = useState(1);
+
+  const ref = useRef<HTMLUListElement>(null);
+  const isFirstRender = useRef(false)
+  
   const handleScroll = () =>
   {
     const elementUl = ref.current;
@@ -27,18 +20,26 @@ export const SearchList: FC<Props> = ({ textInput,setInput, setUrlDetails }) =>
       const { scrollTop, scrollHeight, clientHeight } = elementUl;
       if (Math.floor(scrollTop + clientHeight)  === Math.floor(scrollHeight))
       {
-       setInput(prev=>({...prev,page:prev.page+1}))
+        setPage(prev => prev + 1);
       }
     }
   }
+  useEffect(() =>
+  {
+    if (isFirstRender.current)
+    {
+      getPeopleByPage(`?page=${ page }`);
+    }
+    isFirstRender.current = true;
+  },[page])
 
   return (
     <div className='SearchList_Container'>
       <ul onScroll={handleScroll} ref={ref}  >
         {
-            data.length === 0 ?
+            people.length === 0 ?
               <div>There are not People</div> :
-            data.map((person) => (<PeopleCard person={person} key={person.url} setUrlDetails={setUrlDetails} />))
+            people.map((person) => (<PeopleCard person={person} key={person.url}/>))
         }
       </ul>
     </div>
