@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
+import { ApiProvider } from './context';
 import { Home } from './pages/Home';
 
-function App() {
+
+function App ()
+{
   return (
     <div>
-      <Home/>
+      <ApiProvider>
+        <Home />
+      </ApiProvider>
     </div>
   );
 }

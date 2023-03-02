@@ -1,11 +1,16 @@
+import { useState } from "react";
 import { DetailsCointer, SearchContainer } from "../components"
 
 
-export const Home = () => {
+export const Home = () =>
+{
+  const [ urlDetails, setUrlDetails ] = useState('');
+  console.log({ urlDetails });
+
     return (
         <div className='App_container'>
-            <SearchContainer/>
-            <DetailsCointer/>
+            <SearchContainer setUrlDetails={setUrlDetails} />
+            <DetailsCointer urlDetails={urlDetails} />
     </div>
   )
 }

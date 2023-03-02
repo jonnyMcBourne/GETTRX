@@ -2,12 +2,14 @@ import { Dispatch, FC, SetStateAction, useRef } from 'react'
 import './SearchList.css'
 import { usePeopleReq } from '../../hooks'
 import { PeopleCard } from '../PeopleCard/PeopleCard';
+import { UrlType } from '../../interfaces';
 interface Props
 {
-  textInput: { text: string, page: number };
-  setInput:Dispatch<SetStateAction<{ text: string , page: number }>>
+  textInput: UrlType;
+  setInput: Dispatch<SetStateAction<UrlType>>
+  setUrlDetails: Dispatch<SetStateAction<string>>;
 }
-export const SearchList: FC<Props> = ({ textInput,setInput }) =>
+export const SearchList: FC<Props> = ({ textInput,setInput, setUrlDetails }) =>
 {
   const { data, error } = usePeopleReq(textInput);
   const ref = useRef<HTMLUListElement>(null);
@@ -36,7 +38,7 @@ export const SearchList: FC<Props> = ({ textInput,setInput }) =>
         {
             data.length === 0 ?
               <div>There are not People</div> :
-            data.map((person) => (<PeopleCard person={person} key={person.url}/>))
+            data.map((person) => (<PeopleCard person={person} key={person.url} setUrlDetails={setUrlDetails} />))
         }
       </ul>
     </div>

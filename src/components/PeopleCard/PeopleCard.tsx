@@ -1,27 +1,42 @@
-import { FC } from "react"
+import { Dispatch, FC, SetStateAction } from "react"
 import { People } from "../../interfaces"
 import './PeopleCard.css'
 
 interface PersonProps
 {
     person: People
+      setUrlDetails: Dispatch<SetStateAction<string>>;
 }
 
-export const PeopleCard: FC<PersonProps> = ({ person }) =>
+export const PeopleCard: FC<PersonProps> = ({ person,setUrlDetails }) =>
 {
-    const { name, height, birth_year, gender } = person;
+    const { name, height, birth_year, gender, url } = person;
+    const handleClick = () =>
+    {
+        let startIndex = url.indexOf("people");
+        if (startIndex !== -1)
+        {
+            let lastIndex = url.indexOf("/",startIndex)
+            const newurl= url.slice(lastIndex)
+            setUrlDetails(newurl);
+        } else
+        {
+            
+        }
+        //setUrlDetails(url); 
+    }
     return (
-        <div className="peopleCard_container" tabIndex={ 0 }>
-            <div className="peopleCard_subContainer">
+        <div className="peopleCard_container container" tabIndex={ 0 } onClick={handleClick} >
+            <div>
+                <div className="peopleCard_subContainer">
                 <p className="peopleCard_name" >{ name }</p>
                 <p className="peopleCard_badge" >{ birth_year }</p>
-               
             </div>
             <div className="peopleCard_subContainer" >
                 <p className="peopleCard_gender">{ gender.replace(/\b\w/g, (match) => match.toUpperCase()) }</p>
                 <p className="peopleCard_height" >{ height}</p>
             </div>
-
+            </div>
         </div>
     )
 }

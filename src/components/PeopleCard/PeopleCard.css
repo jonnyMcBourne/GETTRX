@@ -51,3 +51,6 @@
 .peopleCard_height{
     padding-right: 2%;
 }
+.container :hover{
+    background-color: rgba(198, 194, 194,.2);
+}

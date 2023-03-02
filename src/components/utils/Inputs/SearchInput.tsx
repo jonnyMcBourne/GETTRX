@@ -1,10 +1,11 @@
 import { Dispatch, FC, FormEvent, SetStateAction } from "react"
+import { UrlType } from "../../../interfaces";
 import { Button } from "../Buttons/Button"
 import './SearchInput.css'
 
 interface Props
 {
-  setTextInput: Dispatch<SetStateAction<{ text: string, page:number }>>;
+  setTextInput: Dispatch<SetStateAction<UrlType>>;
 }
 
 export const SearchInput:FC<Props> = ({ setTextInput,}) =>
@@ -13,7 +14,7 @@ export const SearchInput:FC<Props> = ({ setTextInput,}) =>
   {
     e.preventDefault();
     const form = e.currentTarget;
-    setTextInput({ text: (form.elements.namedItem('search') as HTMLInputElement).value, page: 1 });
+    setTextInput({ text: (form.elements.namedItem('search') as HTMLInputElement).value, page: 1, singleUrl:'' });
   };
 
   return (
