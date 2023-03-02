@@ -40,7 +40,7 @@
 .keys{
     display: flex;
     flex-direction: column;
-    align-items: end;
+    align-items: flex-end;
     font-weight: 600;
 }
 .keys p{
