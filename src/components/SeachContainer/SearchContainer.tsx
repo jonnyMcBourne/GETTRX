@@ -5,12 +5,12 @@ import  './SearchContainer.css'
 
 export const SearchContainer = () =>
 {
-  const [ textInput, setTextInput ] = useState({ text: '' }); 
+  const [ textInput, setTextInput ] = useState<{text:string,page:number}>({ text: '',page: 1 }); 
   
   return (
     <div className='searchContainer_container'>
       <SearchInput setTextInput={ setTextInput} />
-      <SearchList textInput={textInput}  />
+      <SearchList textInput={textInput} setInput={setTextInput}  />
       <Button text='View'  />
     </div>
   )

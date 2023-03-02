@@ -3,36 +3,43 @@ import { useEffect, useRef, useState } from "react"
 import { peopleApi } from "../api/peopleApi";
 import { Data, People } from "../interfaces";
 
-interface reqProps {
+interface reqProps
+{
     isLoading: boolean,
     data: People[]
     error: string | null
 }
 
-export const usePeopleReq = (url:{text:string}) =>
+export const usePeopleReq = (url: { text: string, page: number }) =>
 {
     const [ result, setResult ] = useState<reqProps>({ data: [], isLoading: true, error: null });
     let newUrl = '';
     if (url.text.length > 1)
     {
-        newUrl=`?search=${url.text}`
+        newUrl = `?search=${ url.text }`
+    } else
+    {
+        newUrl = `?page=${ url.page }`
     }
     const isFirstRender = useRef(true);
-    
     useEffect(() =>
     {
         if (!isFirstRender.current)
         {
             peopleApi.get<Data>(`${ newUrl }`).then(({ data }) =>
             {
-                if (data.results)
+                if (data.results && url.text.length <= 1)
                 {
-                    setResult({ data: data.results, isLoading: false, error: null })
-                } else
+                    setResult(prevState => ({
+                        data: [ ...prevState.data, ...data.results ].filter((item, index, arr) =>
+                        {
+                            return arr.findIndex(t => t.name === item.name) === index;
+                        }), isLoading: false, error: null
+                    }))
+                } else if (data.results && url.text.length > 1 )
                 {
-                    setResult({ data: [ data as unknown as People ], isLoading: false, error: null })
+                    setResult({ data: data.results, isLoading: false, error: null });   
                 }
-                               
             }).catch((error) =>
             {
                 if (axios.isAxiosError(error))
