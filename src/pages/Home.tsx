@@ -1,11 +1,13 @@
+import { useState } from "react";
 import { DetailsCointer, SearchContainer } from "../components"
 
 
-export const Home = () => {
+export const Home = () =>
+{
     return (
         <div className='App_container'>
-            <SearchContainer/>
-            <DetailsCointer/>
+            <SearchContainer />
+            <DetailsCointer />
     </div>
   )
 }

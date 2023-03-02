@@ -1,20 +1,26 @@
-import { Dispatch, FC, FormEvent, SetStateAction } from "react"
+import { Dispatch, FC, FormEvent, SetStateAction, useContext, useEffect, useRef, useState } from "react"
+import { ApiContext } from "../../../context";
+import { UrlType } from "../../../interfaces";
 import { Button } from "../Buttons/Button"
 import './SearchInput.css'
 
 interface Props
 {
-  setTextInput: Dispatch<SetStateAction<{ text: string, page:number }>>;
 }
 
-export const SearchInput:FC<Props> = ({ setTextInput,}) =>
+export const SearchInput:FC<Props> = () =>
 {
+  const [ text, setText ] = useState('');
+  const isFirstRender = useRef(true);
+  const { getPeopleBySearch} = useContext(ApiContext)
   const onSubmitSearch = (e: FormEvent<HTMLFormElement>) =>
   {
     e.preventDefault();
     const form = e.currentTarget;
-    setTextInput({ text: (form.elements.namedItem('search') as HTMLInputElement).value, page: 1 });
+    getPeopleBySearch(`?search=${ (form.elements.namedItem('search') as HTMLInputElement).value }`);
   };
+
+
 
   return (
           <form onSubmit={onSubmitSearch} className="seachInput_container" >

@@ -3,11 +3,12 @@ import './Button.css'
 interface ButtonProps
 {
     text: string
-    type?: | "reset" | "submit" | "button"
+  type?: | "reset" | "submit" | "button"
+  onClick?:()=>void
 }
 
-export const Button:FC<ButtonProps> = ({text, type="button"}) => {
+export const Button:FC<ButtonProps> = ({text, type="button",onClick}) => {
   return (
-      <button type={type}>{ text}</button>
+      <button onClick={onClick} type={type}>{ text}</button>
   )
 }

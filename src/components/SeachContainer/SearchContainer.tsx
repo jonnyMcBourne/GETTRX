@@ -1,17 +1,26 @@
-import { useState } from 'react'
+import { Dispatch, FC, SetStateAction, useContext, useState } from 'react'
+import { ApiContext } from '../../context'
 import { SearchList } from '../SearchList/SearchList'
 import { Button, SearchInput } from '../utils'
 import  './SearchContainer.css'
 
-export const SearchContainer = () =>
+interface Props
 {
-  const [ textInput, setTextInput ] = useState<{text:string,page:number}>({ text: '',page: 1 }); 
-  
+}
+
+export const SearchContainer:FC<Props> = () =>
+{
+  const { singleUrl, getPeopleById } = useContext(ApiContext);
+  const handleClick = () =>
+  {
+    getPeopleById(singleUrl)
+  }
+
   return (
     <div className='searchContainer_container'>
-      <SearchInput setTextInput={ setTextInput} />
-      <SearchList textInput={textInput} setInput={setTextInput}  />
-      <Button text='View'  />
+      <SearchInput />
+      <SearchList  />
+      <Button text='View' onClick={handleClick}  />
     </div>
   )
 }
