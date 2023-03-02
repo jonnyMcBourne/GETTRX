@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import './App.css';
 import { ApiProvider } from './context';
 import { Home } from './pages/Home';

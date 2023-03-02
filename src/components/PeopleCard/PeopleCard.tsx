@@ -1,5 +1,4 @@
-import { Dispatch, FC, SetStateAction, useContext } from "react"
-import { peopleApi } from "../../api"
+import {  FC, useContext } from "react"
 import { ApiContext } from "../../context"
 import { People } from "../../interfaces"
 import './PeopleCard.css'

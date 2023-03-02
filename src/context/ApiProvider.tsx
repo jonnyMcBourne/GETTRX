@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren, useContext, useReducer } from 'react'
+import { FC, PropsWithChildren, useReducer } from 'react'
 import { peopleApi } from '../api';
 import { Data, Gender, People } from '../interfaces';
 import { ApiContext, ApiReducer } from './';

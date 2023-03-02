@@ -1,4 +1,4 @@
-import { Dispatch, FC, SetStateAction, useContext, useState } from 'react'
+import {  FC, useContext } from 'react'
 import { ApiContext } from '../../context'
 import { SearchList } from '../SearchList/SearchList'
 import { Button, SearchInput } from '../utils'

@@ -1,6 +1,5 @@
-import { Dispatch, FC, FormEvent, SetStateAction, useContext, useEffect, useRef, useState } from "react"
+import {  FC, FormEvent, useContext } from "react"
 import { ApiContext } from "../../../context";
-import { UrlType } from "../../../interfaces";
 import { Button } from "../Buttons/Button"
 import './SearchInput.css'
 
@@ -10,8 +9,6 @@ interface Props
 
 export const SearchInput:FC<Props> = () =>
 {
-  const [ text, setText ] = useState('');
-  const isFirstRender = useRef(true);
   const { getPeopleBySearch} = useContext(ApiContext)
   const onSubmitSearch = (e: FormEvent<HTMLFormElement>) =>
   {
