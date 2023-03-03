@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { FC, PropsWithChildren, useReducer } from 'react'
 import { peopleApi } from '../api';
 import { Data, Gender, People } from '../interfaces';
@@ -41,15 +42,27 @@ export const ApiProvider: FC<PropsWithChildren<{}>> = ({ children }) =>
     try
     {
       const { data } = await peopleApi.get<Data>(url);
-      dispatch({
-        type: '[API] - GetPeopleByPage', payload: [ ...state.people, ...data.results ].filter((item, index, arr) =>
-        {
-          return arr.findIndex(t => t.name === item.name) === index;
-        })
-      });
+      if (data.next)
+      {
+        dispatch({
+          type: '[API] - GetPeopleByPage', payload: [ ...state.people, ...data.results ].filter((item, index, arr) =>
+          {
+            return arr.findIndex(t => t.name === item.name) === index;
+          })
+        });
+      }
     } catch (error)
     {
-      dispatch({ type: '[API] - GetPeopleByPage', payload: [] });
+      if (axios.isAxiosError(error))
+      {
+        if (error.code !== 'ERR_BAD_REQUEST')
+        {
+          
+          dispatch({ type: '[API] - GetPeopleByPage', payload: [] });  
+        }
+        console.log(error.message);
+      }
+
     }
   }
 
