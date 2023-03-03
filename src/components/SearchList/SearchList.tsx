@@ -18,7 +18,7 @@ export const SearchList: FC<Props> = ( ) =>
     if (elementUl)
     {
       const { scrollTop, scrollHeight, clientHeight } = elementUl;
-      if (Math.floor(scrollTop + clientHeight)  === Math.floor(scrollHeight))
+      if (Math.floor(scrollTop + clientHeight) >= Math.floor(scrollHeight) - 5)
       {
         setPage(prev => prev + 1);
       }
@@ -39,7 +39,7 @@ export const SearchList: FC<Props> = ( ) =>
       <ul onScroll={handleScroll} ref={ref}  >
         {
             people.length === 0 ?
-              <div>There are not People</div> :
+              <div className='searchList_empty'>There are not People</div> :
             people.map((person) => (<PeopleCard person={person} key={person.url}/>))
         }
       </ul>
