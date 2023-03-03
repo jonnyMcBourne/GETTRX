@@ -78,7 +78,7 @@ test('RENDER DETAILS CONTAINER', () => {
       <DetailsCointer />
     </ApiContext.Provider>
   );
-    // Comprobar que se muestra la información correcta
+
     expect(getByText('Name:')).toBeInTheDocument();
     expect(getByText('Luke Skywalker')).toBeInTheDocument();
     expect(getByText('Height:')).toBeInTheDocument();
