@@ -11,7 +11,7 @@ export const DetailsCointer: FC<Props> = () =>
     <div className='DetailsContainer_container'>
       <div className='DetailsContainer_title'><p>Show Information:</p></div>
       <div className='DetailsContainer_info'>
-        { !singlePeople.name ? <></> : (
+        { !singlePeople?.name ? <></> : (
           <div className='DetailsContainer_info_container'>
             <div className='keys'>
               <p>Name: </p>

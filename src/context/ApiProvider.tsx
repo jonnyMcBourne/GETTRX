@@ -66,8 +66,6 @@ export const ApiProvider: FC<PropsWithChildren<{}>> = ({ children }) =>
     }
   }
 
-  
-
   const getPeopleBySearch =  async( url:string) =>
   {
     try

@@ -38,9 +38,9 @@ export const SearchList: FC<Props> = ( ) =>
     <div className='SearchList_Container'>
       <ul onScroll={handleScroll} ref={ref}  >
         {
-            people.length === 0 ?
+            people?.length === 0 ?
               <div className='searchList_empty'>There are not People</div> :
-            people.map((person) => (<PeopleCard person={person} key={person.url}/>))
+            people?.map((person) => (<PeopleCard person={person} key={person?.url}/>))
         }
       </ul>
     </div>
