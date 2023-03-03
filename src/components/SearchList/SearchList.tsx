@@ -24,6 +24,7 @@ export const SearchList: FC<Props> = ( ) =>
       }
     }
   }
+       /* eslint-disable */
   useEffect(() =>
   {
     if (isFirstRender.current)
@@ -32,7 +33,7 @@ export const SearchList: FC<Props> = ( ) =>
     }
     isFirstRender.current = true;
   },[page])
-
+  /* eslint-enable */
   return (
     <div className='SearchList_Container'>
       <ul onScroll={handleScroll} ref={ref}  >
