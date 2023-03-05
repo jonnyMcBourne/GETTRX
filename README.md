@@ -7,4 +7,4 @@ This Application is made with Mobile First methodology and pure css with no fram
 
 Using Context AP for state Management.
 
-you can see this app in production in the following link. https://app.netlify.com/sites/cosmic-dusk-bbe6a4/deploys
+you can see this app in production in the following link. https://cosmic-dusk-bbe6a4.netlify.app/
